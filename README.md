@@ -104,18 +104,78 @@ L'applicazione utilizza **SQLite** integrato tramite **`better-sqlite3`** e tipi
 
 ```mermaid
 erDiagram
-    COMPANIES ||--o{ USERS : "impiega"
-    COMPANIES ||--o{ VENUES : "sponsorizza"
-    COMPANIES ||--o{ VOUCHERS : "finanzia"
-    DESTINATIONS ||--o{ VENUES : "contiene"
-    USERS ||--o{ VOUCHERS : "possiede"
-    USERS ||--o{ INVITES : "crea (inviter)"
-    USERS ||--o{ TRANSACTIONS : "effettua"
-    USERS ||--o{ CERTIFICATES : "riceve"
-    USERS ||--o{ SHARES : "pubblica"
-    VENUES ||--o{ TRANSACTIONS : "incassa"
-    VENUES ||--o{ NOTIFICATIONS : "riceve"
-    INVITES ||--o| TRANSACTIONS : "origina"
+    COMPANIES ||--o{ USERS : impiega
+    COMPANIES ||--o{ VENUES : sponsorizza
+    COMPANIES ||--o{ VOUCHERS : finanzia
+    DESTINATIONS ||--o{ VENUES : include
+    USERS ||--o{ VOUCHERS : possiede
+    USERS ||--o{ INVITES : genera
+    USERS ||--o{ TRANSACTIONS : effettua
+    USERS ||--o{ CERTIFICATES : consegue
+    USERS ||--o{ SHARES : pubblica
+    VENUES ||--o{ TRANSACTIONS : incassa
+    VENUES ||--o{ NOTIFICATIONS : riceve
+    INVITES ||--o| TRANSACTIONS : origina
+
+    COMPANIES {
+        int id PK
+        string name
+        string vatNumber
+        int fundedAmountCents
+        int impactRating
+    }
+    DESTINATIONS {
+        int id PK
+        string name
+        string region
+    }
+    USERS {
+        int id PK
+        string email
+        string role
+        int impactPoints
+        string badgeLevel
+    }
+    VENUES {
+        int id PK
+        string name
+        string type
+        string city
+        int priceHotelCents
+    }
+    VOUCHERS {
+        int id PK
+        string type
+        string status
+        int amountCents
+    }
+    INVITES {
+        int id PK
+        string code
+        string status
+    }
+    TRANSACTIONS {
+        int id PK
+        string type
+        int amountCents
+        int listPriceCents
+    }
+    NOTIFICATIONS {
+        int id PK
+        string type
+        string title
+        boolean read
+    }
+    CERTIFICATES {
+        int id PK
+        string type
+        string title
+        string impactValue
+    }
+    SHARES {
+        int id PK
+        string caption
+    }
 ```
 
 1. **`companies`**: Ragione sociale, P.IVA, dipendenti, capitale stanziato, rating ESG e capitale redistribuito.
