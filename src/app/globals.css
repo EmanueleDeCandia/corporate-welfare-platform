@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --color-forest: #1c3a2e;
+  --color-cream: #fbf7f0;
+  --color-olive: #4a5d4e;
+  --color-gold: #c29b38;
+  --color-wine: #7a2e32;
+  --color-mist: #f2efe9;
+  --color-terracotta: #c46238;
+
+  --font-serif: "Newsreader", "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --background: #fbf7f0;
+  --foreground: #1c3a2e;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 1;
+}
