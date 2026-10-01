@@ -51,26 +51,29 @@ export default async function ExplorePage({
             </a>
           ))}
         </div>
-        <div className="mt-6 overflow-hidden rounded-[32px] border border-forest/10 bg-white">
-          <div className="h-[420px]">
-            <DynamicMap
-              venues={filtered.map((row) => ({
-                id: row.venue.id,
-                name: row.venue.name,
-                slug: row.venue.slug,
-                type: row.venue.type,
-                city: row.venue.city,
-                lat: row.venue.lat,
-                lng: row.venue.lng,
-              }))}
-              zoom={params.destinazione ? 8 : 6}
-              center={
-                filtered[0]
-                  ? [filtered[0].venue.lat, filtered[0].venue.lng]
-                  : [42.7, 12.6]
-              }
-            />
-          </div>
+        <div className="mt-6">
+          <DynamicMap
+            venues={filtered.map((row) => ({
+              id: row.venue.id,
+              name: row.venue.name,
+              slug: row.venue.slug,
+              type: row.venue.type,
+              city: row.venue.city,
+              lat: row.venue.lat,
+              lng: row.venue.lng,
+              coverImage: row.venue.coverImage,
+              priceHotelCents: row.venue.priceHotelCents,
+              priceAperitivoCents: row.venue.priceAperitivoCents,
+              priceShowCents: row.venue.priceShowCents,
+              localSupportPercent: row.venue.localSupportPercent,
+            }))}
+            zoom={params.destinazione ? 8 : 6}
+            center={
+              filtered[0]
+                ? [filtered[0].venue.lat, filtered[0].venue.lng]
+                : [42.7, 12.6]
+            }
+          />
         </div>
         <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {filtered.map((row) => (
